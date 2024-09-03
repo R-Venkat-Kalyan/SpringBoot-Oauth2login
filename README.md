@@ -28,8 +28,21 @@ To enable Google Sign-In for your app, you need to create OAuth2 credentials in 
 4. **Go to the "Credentials" tab** and click on **"Create Credentials" > "OAuth 2.0 Client IDs"**.
 5. **Configure the OAuth consent screen** (if not already configured). You may need to set up a test user list.
 6. Set the **"Application type"** to **"Web application."**
-7. Add the following **"Authorized redirect URIs"**: `http://localhost:8080/login/oauth2/code/google`.
-8. Click **"Create"** to generate your **Client ID** and **Client Secret**.
+
+### 🔗 Key Points About Redirect URIs
+
+**Authorized Redirect URIs** are the URLs that Google will redirect to after a user successfully authenticates. It is crucial to match the redirect URIs configured in your Spring Boot application with those authorized in the Google Developer Console. Here’s why:
+
+- **Security**: Only authorized URIs will receive the authentication code from Google. This prevents malicious sites from intercepting sensitive data.
+- **Default URI Handling**: Spring Security uses a default endpoint pattern like `/login/oauth2/code/google` for handling OAuth2 login responses. You must include this exact URI (e.g., `http://localhost:8080/login/oauth2/code/google`) in your authorized redirect URIs.
+- **Flexibility**: You can list multiple URIs to support various environments (development, staging, production). However, each environment's redirect URI must be explicitly listed in Google’s settings to function correctly.
+
+**Add the following "Authorized redirect URIs"**:
+
+- `http://localhost:8080/login/oauth2/code/google`
+- `https://localhost:8080/login/oauth2/code/google`
+
+7. Click **"Create"** to generate your **Client ID** and **Client Secret**.
 
 ### 🔑 Configuring Your Spring Boot Application
 
@@ -42,4 +55,26 @@ To enable Google Sign-In for your app, you need to create OAuth2 credentials in 
    spring.security.oauth2.client.registration.google.redirect-uri=http://localhost:8080/login/oauth2/code/google
    spring.security.oauth2.client.provider.google.user-info-uri=https://www.googleapis.com/oauth2/v3/userinfo
 
-🏃‍♂️ Run the Application
+# 🏃‍♂️ Run the Application
+
+Now, you are all set to run your Spring Boot application and test the Google OAuth2 Sign-In functionality.
+
+## 📦 How to Clone and Run the App
+
+Follow these steps to clone and run the application on your local machine:
+
+### Clone the Repository
+
+Open your terminal and run the following command to clone the repository to your local machine:
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+mvn clean install
+mvn spring-boot:run
+
+# Access the Application
+Open your web browser and go to http://localhost:8080. You should see the home page with the "Login with Google" button.
+
+# Log in with Google
+Click the "Login with Google" button and follow the instructions to log in with your Google account. After successful authentication, you should be redirected to the welcome page displaying your user details.
