@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-
 	
-
-	
-	@GetMapping({"/", "/index"})
+//	@GetMapping({"/", "/index"})
+	@GetMapping("/")
     public String index() {
         return "index";  // Return the custom sign-in page template
     }

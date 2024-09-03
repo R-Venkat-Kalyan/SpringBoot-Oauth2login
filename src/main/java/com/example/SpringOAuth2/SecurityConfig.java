@@ -12,23 +12,15 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 @EnableWebSecurity
 public class SecurityConfig {
 
-//	@Bean
-//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//		http
-//		.authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-//		.oauth2Login(Customizer.withDefaults());
-//		return http.build();
-//		
-//	}
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/index").permitAll() // Allow access to index page without authentication
+                .requestMatchers("/").permitAll() // Allow access to index page without authentication
                 .anyRequest().authenticated()           // Other requests require authentication
             )
             .oauth2Login(oauth2 -> oauth2
-                .loginPage("/index") // Redirect to the custom login page
+//                .loginPage("/index") // Redirect to the custom login page
                 .defaultSuccessUrl("/welcome") // Redirect after successful login
                 .successHandler(successHandler()) // Custom success handler
             );
