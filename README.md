@@ -67,11 +67,11 @@ Follow these steps to clone and run the application on your local machine:
 
 Open your terminal and run the following command to clone the repository to your local machine:
 
-```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-mvn clean install
-mvn spring-boot:run
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   mvn clean install
+   mvn spring-boot:run
 
 # Access the Application
 Open your web browser and go to http://localhost:8080. You should see the home page with the "Login with Google" button.
