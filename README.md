@@ -73,8 +73,8 @@ Open your terminal and run the following command to clone the repository to your
    mvn clean install
    mvn spring-boot:run
 
-# Access the Application
+**Access the Application**
 Open your web browser and go to http://localhost:8080. You should see the home page with the "Login with Google" button.
 
-# Log in with Google
+**Log in with Google**
 Click the "Login with Google" button and follow the instructions to log in with your Google account. After successful authentication, you should be redirected to the welcome page displaying your user details.
